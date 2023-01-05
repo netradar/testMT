@@ -4,6 +4,7 @@ enum ThreadType {
 	INPUT,
 	UI
 };
+constexpr int ThreadNum = UI + 1;
 enum ThreadStatus {
 	RUNNING,
 	STOP
