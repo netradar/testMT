@@ -3,23 +3,19 @@
 #include <condition_variable>
 #include <queue>
 #include "message.h"
+#include "globaldefine.h"
+#include <iostream>
 
-enum ThreadType {
-	TIMER = 0,
-	INPUT,
-	UI
-};
-enum ThreadStatus {
-	RUNNING,
-	STOP
-};
+constexpr auto MAX_WAITING_TIME = 200;
+
 
 class ThreadRunnableBase {
 public:
-	ThreadRunnableBase(ThreadType t) :m_type(t) {}
+	ThreadRunnableBase(ThreadType t) :m_type(t), m_status(STOP) { }
 
 	void start() { m_thread = std::thread(&ThreadRunnableBase::run,this); }
 	void stop() { m_status = STOP; wakeup(); }
+	void join() { m_thread.join(); }
 	void addTail(Message* msg) {
 		std::lock_guard<std::mutex> lock(mt);
 		message_queue.push(msg);
@@ -31,17 +27,14 @@ public:
 
 
 protected:
-	void run() {
-		m_status = RUNNING;
-		mainProcessLoop();
-	}
+	void run();
 	virtual void mainProcessLoop() = 0;
 
 	Message* getMessageFromQueue() {
+		
 		std::lock_guard<std::mutex> lock(mt);
 		if (message_queue.empty())
 			return nullptr;
-		
 		Message* ret = message_queue.front();
 		message_queue.pop();
 		return ret;

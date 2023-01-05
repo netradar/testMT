@@ -2,19 +2,25 @@
 //
 
 #include <iostream>
-#include "threads.h"
+#include "globaldefine.h"
+#include "TimerThread.h"
+#include "UIThread.h"
+#include <queue>
 
 using namespace std;
 
-
+extern ThreadRunnableBase* thread_global[3];
 int main()
 {
 
+	thread_global[TIMER] = new TimerThread();
+	thread_global[UI] = new UIThread();
 
-	auto t1 = std::chrono::steady_clock::now();
-	auto t2 = std::chrono::steady_clock::now();
-	t1 = t1 + 1s;
+	thread_global[TIMER]->start();
+	thread_global[UI]->start();
 
-	cout << (t2 < t1);
+	thread_global[UI]->join();
+
+	
 }
 

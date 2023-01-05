@@ -3,15 +3,17 @@
 #include "TimerMsg.h"
 #include <list>
 
-constexpr auto MAX_WAITING_TIME = 200;
 
 class TimerThread : public ThreadRunnableBase
 {
+public:
+    TimerThread() :ThreadRunnableBase(TIMER) {}
 protected:
     void mainProcessLoop() override;
     void processMessage(Message* msg);
-    void checkTimeout();
+    DURATION_10ms checkTimeout();
     void processTimeout();
+    void addTimer(TimerMsg* msg);
 private:
     std::list<TimerMsg*> m_registered_timer;
 };
