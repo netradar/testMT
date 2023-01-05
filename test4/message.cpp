@@ -2,7 +2,7 @@
 #include "threads.h"
 #include <iostream>
 
-extern ThreadRunnableBase* thread_global[3];
+extern ThreadRunnableBase* thread_global[ThreadNum];
 extern thread_local ThreadType s_thread_type;
 
 MSG_TYPE Message::getType()

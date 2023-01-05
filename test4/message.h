@@ -16,4 +16,5 @@ protected:
 	MSG_TYPE m_type;
 	ThreadType sender;
 	ThreadType receiver;
+
 };

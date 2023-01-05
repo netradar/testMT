@@ -13,5 +13,6 @@ enum ThreadStatus {
 enum MSG_TYPE {
 	ADDTIMER,
 	CANCELTIMER,
-	TIMEOUT
+	TIMEOUT,
+	GETINPUT
 };

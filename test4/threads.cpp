@@ -1,6 +1,6 @@
 #include "threads.h"
 
-ThreadRunnableBase* thread_global[3]{};
+ThreadRunnableBase* thread_global[ThreadNum]{};
 
 thread_local ThreadType s_thread_type;
 

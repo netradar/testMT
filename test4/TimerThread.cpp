@@ -42,6 +42,10 @@ void TimerThread::processMessage(Message* msg)
 		case ADDTIMER:
 			addTimer(static_cast<TimerMsg *>(msg));
 			break;
+		case CANCELTIMER:
+			cancelTimer(static_cast<TimerMsg*>(msg));
+			delete msg;
+			break;
 	}
 }
 
@@ -87,4 +91,16 @@ void TimerThread::addTimer(TimerMsg* msg)
 
 
 	
+}
+
+void TimerThread::cancelTimer(TimerMsg* msg)
+{
+	auto it = m_registered_timer.begin();
+	for (; it != m_registered_timer.end(); it++) {
+		if ((*it)->getSN() == msg->getSN()) {
+			
+			m_registered_timer.remove(*it);
+			break;
+		}
+	}
 }

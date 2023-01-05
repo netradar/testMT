@@ -5,7 +5,8 @@
 #include "globaldefine.h"
 #include "TimerThread.h"
 #include "UIThread.h"
-#include <queue>
+#include "InputThread.h"
+
 
 using namespace std;
 
@@ -14,12 +15,17 @@ int main()
 {
 
 	thread_global[TIMER] = new TimerThread();
+	thread_global[INPUT] = new InputThread();
 	thread_global[UI] = new UIThread();
 
+	thread_global[INPUT]->start();
 	thread_global[TIMER]->start();
+
 	thread_global[UI]->start();
 
 	thread_global[UI]->join();
+
+
 
 	
 }

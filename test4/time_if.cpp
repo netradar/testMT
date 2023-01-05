@@ -17,6 +17,11 @@ void Timer::start()
 
 void Timer::stop()
 {
+	TimerMsg* msg = new TimerMsg();
+	msg->setType(CANCELTIMER);
+	msg->setSN(SN);
+
+	msg->post(TIMER);
 }
 
 void Timer::reset()

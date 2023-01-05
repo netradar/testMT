@@ -1,9 +1,11 @@
 #include "UIThread.h"
+#include "InputThread.h"
 
 void UIThread::mainProcessLoop()
 {
 	std::cout << "please enter a number:\n";
 
+	getInput();
 	reinput_timer.start();
 
 	while (isRunning()) {
@@ -29,7 +31,21 @@ void UIThread::processMessage(Message* msg)
 	
 	switch(msg->getType()){
 	case TIMEOUT:
-		std::cout << "no input time out:\n";
+		std::cout << "no input,please input:\n";
+		break;
+	case GETINPUT:
+		reinput_timer.stop();
+		std::cout << "input coming!\n";
 		break;
 	}
+
+	delete msg;
+}
+
+void UIThread::getInput()
+{
+	InputMsg* msg = new InputMsg();
+
+	msg->setType(GETINPUT);
+	msg->post(INPUT);
 }

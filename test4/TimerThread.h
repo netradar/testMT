@@ -14,6 +14,7 @@ protected:
     DURATION_10ms checkTimeout();
     void processTimeout();
     void addTimer(TimerMsg* msg);
+    void cancelTimer(TimerMsg* msg);
 private:
     std::list<TimerMsg*> m_registered_timer;
 };

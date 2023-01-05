@@ -36,6 +36,9 @@
     <ClCompile Include="time_if.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="threads.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globaldefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

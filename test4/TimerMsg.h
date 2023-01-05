@@ -15,12 +15,13 @@ public:
 	void setIsPeriodic(bool periodic);
 	bool isPeriodic();
 	DURATION_10ms getLength();
+	uint64_t getSN() { return SN; }
 	TIMEPOINT getExpiredTime() { return expired_point; }
 private:
 	TIMEPOINT expired_point;
 	DURATION_10ms m_length;
 	bool m_isPeriodic;
-	int64_t SN = 0;
+	uint64_t SN = 0;
 	
 };
 

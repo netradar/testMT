@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputThread.cpp" />
     <ClCompile Include="message.cpp" />
     <ClCompile Include="test4.cpp" />
     <ClCompile Include="threads.cpp" />
@@ -141,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globaldefine.h" />
+    <ClInclude Include="InputThread.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="threads.h" />
     <ClInclude Include="TimerMsg.h" />
